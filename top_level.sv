@@ -1,27 +1,29 @@
 // Module:      top_level
 // Description: Modulul de varf al proiectului. Nu contine logica proprie.
 //              Instantiaza reg_interface si spi_module si le conecteaza
-//              prin fire interne APB.
+//              prin semnale interne APB.
 //              Expune in exterior doar semnalele fizice ale placii Nexys A7.
 //
 // Conexiuni fizice pe Nexys A7:
-//   clk           - oscilator 100 MHz, pinul E3
-//   rst_n         - butonul central BTNC, activ LOW
-//   enable        - SW0: pornire motor
+//   clk            - oscilator 100 MHz, pinul E3
+//   rst_n          - butonul central BTNC, activ LOW
+//   enable         - SW0: pornire motor
 //   inainte_inapoi - SW1: directia motorului
-//   cpol          - SW2: polaritate clock SPI
-//   cpha          - SW3: faza clock SPI
-//   spi_*         - conector PMOD JA
+//   cpol           - SW2: polaritate clock SPI
+//   cpha           - SW3: faza clock SPI
+//   spi_*          - conector PMOD JA
 
-module top_level (
-    input        clk,            // ceasul sistemului, 100 MHz
-    input        rst_n,          // reset activ LOW, conectat la BTNC
+module top_level #(
+    parameter DEBOUNCE_MAX = 500_000 // suprascris la 10 in testbench
+)(
+    input        clk,           // ceasul sistemului, 100 MHz
+    input        rst_n,         // reset activ LOW, conectat la BTNC
 
     // comutatoare fizice de pe Nexys A7
-    input        enable,          // SW0: motor pornit sau oprit
-    input        inainte_inapoi,  // SW1: directia motorului
-    input        cpol,            // SW2: polaritate clock SPI pentru SPCR
-    input        cpha,            // SW3: faza clock SPI pentru SPCR
+    input        enable,         // SW0: motor pornit sau oprit
+    input        inainte_inapoi, // SW1: directia motorului
+    input        cpol,           // SW2: polaritate clock SPI pentru SPCR
+    input        cpha,           // SW3: faza clock SPI pentru SPCR
 
     // semnale SPI catre conectorul PMOD JA
     output [1:0] spi_ss_n, // Slave Select activ LOW, catre pinul 10 Arduino
@@ -30,7 +32,7 @@ module top_level (
     input        spi_miso  // date Arduino catre FPGA, de la pinul 12 Arduino
 );
 
-// Fire interne APB care conecteaza reg_interface cu spi_module
+// Semnale interne APB care conecteaza reg_interface cu spi_module
 // Aceste semnale nu sunt vizibile in afara acestui modul
 wire [1:0] paddr;   // adresa registrului: 0=SPCR, 1=SPSR, 2=SPDR
 wire       psel;    // selectia slave-ului APB
@@ -42,7 +44,10 @@ wire       pready;  // confirmare de la spi_module
 
 // Instanta reg_interface
 // Citeste comutatoarele si conduce bus-ul APB
-reg_interface u_reg (
+// DEBOUNCE_MAX transmis din exterior pentru a putea fi redus in simulare
+reg_interface #(
+    .DEBOUNCE_MAX(DEBOUNCE_MAX)
+) u_reg (
     .clk            (clk),
     .rst_n          (rst_n),
     .inainte_inapoi (inainte_inapoi),
@@ -59,7 +64,8 @@ reg_interface u_reg (
 );
 
 // Instanta spi_module
-// Primeste comenzi APB si genereaza semnalele SPI fizice
+// Primeste comenzi APB si genereaza semnalul de ceas
+// si traficul de date pe interfata fizica SPI
 spi_module u_spi (
     .clk      (clk),
     .rst_n    (rst_n),

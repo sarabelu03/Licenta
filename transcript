@@ -1,0 +1,370 @@
+# Compile of reg_interface.sv was successful.
+# Compile of SPI_module.sv was successful.
+# Compile of stimuli.sv was successful.
+# Compile of tb_top.sv was successful.
+# Compile of top_level.sv was successful.
+# 5 compiles, 0 failed with no errors.
+vsim -gui work.tb_top
+# vsim -gui work.tb_top 
+# Start time: 17:29:16 on Aug 24,2026
+# Loading sv_std.std
+# Loading work.tb_top
+# Loading work.stimuli
+# Loading work.top_level
+# Loading work.reg_interface
+# Loading work.spi_module
+# ** Error (suppressible): (vsim-3584) C:/Users/liviu/Desktop/Facultate_2025_2026/Licenta/top_level.sv(50): Module parameter 'DEBOUNCE_MAX' not found for override.
+#    Time: 0 ps  Iteration: 0  Instance: /tb_top/u_dut File: C:/Users/liviu/Desktop/Facultate_2025_2026/Licenta/top_level.sv
+# Error loading design
+# End time: 17:29:17 on Aug 24,2026, Elapsed time: 0:00:01
+# Errors: 1, Warnings: 5
+# Compile of reg_interface.sv was successful.
+# Compile of SPI_module.sv was successful.
+# Compile of stimuli.sv was successful.
+# Compile of tb_top.sv was successful.
+# Compile of top_level.sv was successful.
+# 5 compiles, 0 failed with no errors.
+vsim -gui work.tb_top
+# vsim -gui work.tb_top 
+# Start time: 17:31:28 on Aug 24,2026
+# Loading sv_std.std
+# Loading work.tb_top
+# Loading work.stimuli
+# Loading work.top_level
+# Loading work.reg_interface
+# Loading work.spi_module
+# ** Error (suppressible): (vsim-3584) C:/Users/liviu/Desktop/Facultate_2025_2026/Licenta/top_level.sv(50): Module parameter 'DEBOUNCE_MAX' not found for override.
+#    Time: 0 ps  Iteration: 0  Instance: /tb_top/u_dut File: C:/Users/liviu/Desktop/Facultate_2025_2026/Licenta/top_level.sv
+# Error loading design
+# End time: 17:31:29 on Aug 24,2026, Elapsed time: 0:00:01
+# Errors: 1, Warnings: 2
+# Compile of reg_interface.sv was successful.
+# Compile of SPI_module.sv was successful.
+# Compile of stimuli.sv was successful.
+# Compile of tb_top.sv was successful.
+# Compile of top_level.sv was successful.
+# 5 compiles, 0 failed with no errors.
+vsim -gui work.tb_top
+# vsim -gui work.tb_top 
+# Start time: 17:32:44 on Aug 24,2026
+# Loading sv_std.std
+# Loading work.tb_top
+# Loading work.stimuli
+# Loading work.top_level
+# Loading work.reg_interface
+# Loading work.spi_module
+# ** Error (suppressible): (vsim-3584) C:/Users/liviu/Desktop/Facultate_2025_2026/Licenta/top_level.sv(50): Module parameter 'DEBOUNCE_MAX' not found for override.
+#    Time: 0 ps  Iteration: 0  Instance: /tb_top/u_dut File: C:/Users/liviu/Desktop/Facultate_2025_2026/Licenta/top_level.sv
+# Error loading design
+# End time: 17:32:45 on Aug 24,2026, Elapsed time: 0:00:01
+# Errors: 1, Warnings: 2
+# Compile of reg_interface.sv was successful.
+# Compile of SPI_module.sv was successful.
+# Compile of stimuli.sv was successful.
+# Compile of tb_top.sv was successful.
+# Compile of top_level.sv was successful.
+# 5 compiles, 0 failed with no errors.
+vsim -gui work.tb_top
+# vsim -gui work.tb_top 
+# Start time: 17:35:31 on Aug 24,2026
+# Loading sv_std.std
+# Loading work.tb_top
+# Loading work.stimuli
+# Loading work.top_level
+# Loading work.reg_interface
+# Loading work.spi_module
+# WARNING: No extended dataflow license exists
+add wave -position insertpoint  \
+sim:/tb_top/clk \
+sim:/tb_top/rst_n \
+sim:/tb_top/enable \
+sim:/tb_top/inainte_inapoi \
+sim:/tb_top/cpol \
+sim:/tb_top/cpha \
+sim:/tb_top/spi_ss_n \
+sim:/tb_top/spi_clk \
+sim:/tb_top/spi_mosi \
+sim:/tb_top/spi_miso
+run -all
+# t=0 rst=0 en=0 dir=0 ss_n=1 sck=0 mosi=0
+# t=50 rst=1 en=0 dir=0 ss_n=1 sck=0 mosi=0
+# t=250 rst=1 en=1 dir=0 ss_n=1 sck=0 mosi=0
+# t=425 rst=1 en=1 dir=0 ss_n=0 sck=0 mosi=0
+# t=1055 rst=1 en=1 dir=0 ss_n=0 sck=1 mosi=0
+# t=1555 rst=1 en=1 dir=0 ss_n=0 sck=0 mosi=0
+# t=2055 rst=1 en=1 dir=0 ss_n=0 sck=1 mosi=0
+# t=2555 rst=1 en=1 dir=0 ss_n=0 sck=0 mosi=0
+# t=3055 rst=1 en=1 dir=0 ss_n=0 sck=1 mosi=0
+# t=3555 rst=1 en=1 dir=0 ss_n=0 sck=0 mosi=0
+# t=4055 rst=1 en=1 dir=0 ss_n=0 sck=1 mosi=0
+# t=4555 rst=1 en=1 dir=0 ss_n=0 sck=0 mosi=0
+# t=5055 rst=1 en=1 dir=0 ss_n=0 sck=1 mosi=0
+# t=5250 rst=1 en=1 dir=1 ss_n=0 sck=1 mosi=0
+# t=5555 rst=1 en=1 dir=1 ss_n=0 sck=0 mosi=0
+# t=6055 rst=1 en=1 dir=1 ss_n=0 sck=1 mosi=0
+# t=6555 rst=1 en=1 dir=1 ss_n=0 sck=0 mosi=1
+# t=7055 rst=1 en=1 dir=1 ss_n=0 sck=1 mosi=1
+# t=7555 rst=1 en=1 dir=1 ss_n=0 sck=0 mosi=0
+# t=8055 rst=1 en=1 dir=1 ss_n=0 sck=1 mosi=0
+# t=8555 rst=1 en=1 dir=1 ss_n=0 sck=0 mosi=0
+# t=8565 rst=1 en=1 dir=1 ss_n=1 sck=0 mosi=0
+# t=10250 rst=1 en=0 dir=1 ss_n=1 sck=0 mosi=0
+# Simulare terminata
+# ** Note: $stop    : C:/Users/liviu/Desktop/Facultate_2025_2026/Licenta/stimuli.sv(74)
+#    Time: 15250 ps  Iteration: 0  Instance: /tb_top/u_stimuli
+# Break in Module stimuli at C:/Users/liviu/Desktop/Facultate_2025_2026/Licenta/stimuli.sv line 74
+# Compile of reg_interface.sv was successful.
+# Compile of SPI_module.sv was successful.
+# Compile of stimuli.sv was successful.
+# Compile of tb_top.sv was successful.
+# Compile of top_level.sv was successful.
+# 5 compiles, 0 failed with no errors.
+vsim -gui work.tb_top
+# End time: 17:40:15 on Aug 24,2026, Elapsed time: 0:04:44
+# Errors: 0, Warnings: 3
+# vsim -gui work.tb_top 
+# Start time: 17:40:15 on Aug 24,2026
+# Loading sv_std.std
+# Loading work.tb_top
+# Loading work.stimuli
+# Loading work.top_level
+# Loading work.reg_interface
+# Loading work.spi_module
+# WARNING: No extended dataflow license exists
+add wave -position insertpoint  \
+sim:/tb_top/clk \
+sim:/tb_top/rst_n \
+sim:/tb_top/enable \
+sim:/tb_top/inainte_inapoi \
+sim:/tb_top/cpol \
+sim:/tb_top/cpha \
+sim:/tb_top/spi_ss_n \
+sim:/tb_top/spi_clk \
+sim:/tb_top/spi_mosi \
+sim:/tb_top/spi_miso
+run -all
+# [0 ns] Reset activ
+# t=0 rst=0 en=0 dir=0 ss_n=1 sck=0 mosi=0
+# [100 ns] Reset eliberat, sistem pornit
+# t=100 rst=1 en=0 dir=0 ss_n=1 sck=0 mosi=0
+# [600 ns] Scenariu 1: enable 0->1, motor pornit directie inainte
+# t=600 rst=1 en=1 dir=0 ss_n=1 sck=0 mosi=0
+# t=775 rst=1 en=1 dir=0 ss_n=0 sck=0 mosi=0
+# t=1605 rst=1 en=1 dir=0 ss_n=0 sck=1 mosi=0
+# t=2105 rst=1 en=1 dir=0 ss_n=0 sck=0 mosi=0
+# t=2605 rst=1 en=1 dir=0 ss_n=0 sck=1 mosi=0
+# t=3105 rst=1 en=1 dir=0 ss_n=0 sck=0 mosi=0
+# t=3605 rst=1 en=1 dir=0 ss_n=0 sck=1 mosi=0
+# t=4105 rst=1 en=1 dir=0 ss_n=0 sck=0 mosi=0
+# t=4605 rst=1 en=1 dir=0 ss_n=0 sck=1 mosi=0
+# t=5105 rst=1 en=1 dir=0 ss_n=0 sck=0 mosi=0
+# t=5605 rst=1 en=1 dir=0 ss_n=0 sck=1 mosi=0
+# t=6105 rst=1 en=1 dir=0 ss_n=0 sck=0 mosi=0
+# t=6605 rst=1 en=1 dir=0 ss_n=0 sck=1 mosi=0
+# t=7105 rst=1 en=1 dir=0 ss_n=0 sck=0 mosi=1
+# t=7605 rst=1 en=1 dir=0 ss_n=0 sck=1 mosi=1
+# t=8105 rst=1 en=1 dir=0 ss_n=0 sck=0 mosi=0
+# t=8605 rst=1 en=1 dir=0 ss_n=0 sck=1 mosi=0
+# t=9105 rst=1 en=1 dir=0 ss_n=0 sck=0 mosi=0
+# t=9115 rst=1 en=1 dir=0 ss_n=1 sck=0 mosi=0
+# [30600 ns] Scenariu 2: inainte_inapoi 0->1, directie inapoi
+# t=30600 rst=1 en=1 dir=1 ss_n=1 sck=0 mosi=0
+# t=30775 rst=1 en=1 dir=1 ss_n=0 sck=0 mosi=0
+# t=31605 rst=1 en=1 dir=1 ss_n=0 sck=1 mosi=0
+# t=32105 rst=1 en=1 dir=1 ss_n=0 sck=0 mosi=0
+# t=32605 rst=1 en=1 dir=1 ss_n=0 sck=1 mosi=0
+# t=33105 rst=1 en=1 dir=1 ss_n=0 sck=0 mosi=0
+# t=33605 rst=1 en=1 dir=1 ss_n=0 sck=1 mosi=0
+# t=34105 rst=1 en=1 dir=1 ss_n=0 sck=0 mosi=0
+# t=34605 rst=1 en=1 dir=1 ss_n=0 sck=1 mosi=0
+# t=35105 rst=1 en=1 dir=1 ss_n=0 sck=0 mosi=0
+# t=35605 rst=1 en=1 dir=1 ss_n=0 sck=1 mosi=0
+# t=36105 rst=1 en=1 dir=1 ss_n=0 sck=0 mosi=0
+# t=36605 rst=1 en=1 dir=1 ss_n=0 sck=1 mosi=0
+# t=37105 rst=1 en=1 dir=1 ss_n=0 sck=0 mosi=1
+# t=37605 rst=1 en=1 dir=1 ss_n=0 sck=1 mosi=1
+# t=38105 rst=1 en=1 dir=1 ss_n=0 sck=0 mosi=1
+# t=38605 rst=1 en=1 dir=1 ss_n=0 sck=1 mosi=1
+# t=39105 rst=1 en=1 dir=1 ss_n=0 sck=0 mosi=0
+# t=39115 rst=1 en=1 dir=1 ss_n=1 sck=0 mosi=0
+# [60600 ns] Scenariu 3: enable 1->0, motor oprit
+# t=60600 rst=1 en=0 dir=1 ss_n=1 sck=0 mosi=0
+# [90600 ns] Simulare terminata
+# ** Note: $stop    : C:/Users/liviu/Desktop/Facultate_2025_2026/Licenta/stimuli.sv(80)
+#    Time: 90600 ps  Iteration: 0  Instance: /tb_top/u_stimuli
+# Break in Module stimuli at C:/Users/liviu/Desktop/Facultate_2025_2026/Licenta/stimuli.sv line 80
+# Compile of reg_interface.sv was successful.
+# Compile of SPI_module.sv was successful.
+# Compile of stimuli.sv was successful.
+# Compile of tb_top.sv was successful.
+# Compile of top_level.sv was successful.
+# 5 compiles, 0 failed with no errors.
+vsim -gui work.tb_top
+# End time: 17:46:12 on Aug 24,2026, Elapsed time: 0:05:57
+# Errors: 0, Warnings: 2
+# vsim -gui work.tb_top 
+# Start time: 17:46:12 on Aug 24,2026
+# Loading sv_std.std
+# Loading work.tb_top
+# Loading work.stimuli
+# Loading work.top_level
+# Loading work.reg_interface
+# Loading work.spi_module
+# WARNING: No extended dataflow license exists
+add wave -position insertpoint  \
+sim:/tb_top/clk \
+sim:/tb_top/rst_n \
+sim:/tb_top/enable \
+sim:/tb_top/inainte_inapoi \
+sim:/tb_top/cpol \
+sim:/tb_top/cpha \
+sim:/tb_top/spi_ss_n \
+sim:/tb_top/spi_clk \
+sim:/tb_top/spi_mosi \
+sim:/tb_top/spi_miso
+run -all
+# [0 ns] Reset activ
+# t=0 rst=0 en=0 dir=0 ss_n=1 sck=0 mosi=0
+# [100 ns] Reset eliberat, sistem pornit
+# t=100 rst=1 en=0 dir=0 ss_n=1 sck=0 mosi=0
+# [600 ns] Scenariu 1: enable 0->1, motor pornit directie inainte
+# t=600 rst=1 en=1 dir=0 ss_n=1 sck=0 mosi=0
+# t=775 rst=1 en=1 dir=0 ss_n=0 sck=0 mosi=0
+# t=1605 rst=1 en=1 dir=0 ss_n=0 sck=1 mosi=0
+# t=2105 rst=1 en=1 dir=0 ss_n=0 sck=0 mosi=0
+# t=2605 rst=1 en=1 dir=0 ss_n=0 sck=1 mosi=0
+# t=3105 rst=1 en=1 dir=0 ss_n=0 sck=0 mosi=0
+# t=3605 rst=1 en=1 dir=0 ss_n=0 sck=1 mosi=0
+# t=4105 rst=1 en=1 dir=0 ss_n=0 sck=0 mosi=0
+# t=4605 rst=1 en=1 dir=0 ss_n=0 sck=1 mosi=0
+# t=5105 rst=1 en=1 dir=0 ss_n=0 sck=0 mosi=0
+# t=5605 rst=1 en=1 dir=0 ss_n=0 sck=1 mosi=0
+# t=6105 rst=1 en=1 dir=0 ss_n=0 sck=0 mosi=0
+# t=6605 rst=1 en=1 dir=0 ss_n=0 sck=1 mosi=0
+# t=7105 rst=1 en=1 dir=0 ss_n=0 sck=0 mosi=1
+# t=7605 rst=1 en=1 dir=0 ss_n=0 sck=1 mosi=1
+# t=8105 rst=1 en=1 dir=0 ss_n=0 sck=0 mosi=0
+# t=8605 rst=1 en=1 dir=0 ss_n=0 sck=1 mosi=0
+# t=9105 rst=1 en=1 dir=0 ss_n=0 sck=0 mosi=0
+# t=9115 rst=1 en=1 dir=0 ss_n=1 sck=0 mosi=0
+# [30600 ns] Scenariu 2: inainte_inapoi 0->1, directie inapoi
+# t=30600 rst=1 en=1 dir=1 ss_n=1 sck=0 mosi=0
+# t=30775 rst=1 en=1 dir=1 ss_n=0 sck=0 mosi=0
+# t=31605 rst=1 en=1 dir=1 ss_n=0 sck=1 mosi=0
+# t=32105 rst=1 en=1 dir=1 ss_n=0 sck=0 mosi=0
+# t=32605 rst=1 en=1 dir=1 ss_n=0 sck=1 mosi=0
+# t=33105 rst=1 en=1 dir=1 ss_n=0 sck=0 mosi=0
+# t=33605 rst=1 en=1 dir=1 ss_n=0 sck=1 mosi=0
+# t=34105 rst=1 en=1 dir=1 ss_n=0 sck=0 mosi=0
+# t=34605 rst=1 en=1 dir=1 ss_n=0 sck=1 mosi=0
+# t=35105 rst=1 en=1 dir=1 ss_n=0 sck=0 mosi=0
+# t=35605 rst=1 en=1 dir=1 ss_n=0 sck=1 mosi=0
+# t=36105 rst=1 en=1 dir=1 ss_n=0 sck=0 mosi=0
+# t=36605 rst=1 en=1 dir=1 ss_n=0 sck=1 mosi=0
+# t=37105 rst=1 en=1 dir=1 ss_n=0 sck=0 mosi=1
+# t=37605 rst=1 en=1 dir=1 ss_n=0 sck=1 mosi=1
+# t=38105 rst=1 en=1 dir=1 ss_n=0 sck=0 mosi=1
+# t=38605 rst=1 en=1 dir=1 ss_n=0 sck=1 mosi=1
+# t=39105 rst=1 en=1 dir=1 ss_n=0 sck=0 mosi=0
+# t=39115 rst=1 en=1 dir=1 ss_n=1 sck=0 mosi=0
+# [60600 ns] Scenariu 3: enable 1->0, motor oprit
+# t=60600 rst=1 en=0 dir=1 ss_n=1 sck=0 mosi=0
+# t=60685 rst=1 en=0 dir=1 ss_n=0 sck=0 mosi=0
+# t=61605 rst=1 en=0 dir=1 ss_n=0 sck=1 mosi=0
+# t=62105 rst=1 en=0 dir=1 ss_n=0 sck=0 mosi=0
+# t=62605 rst=1 en=0 dir=1 ss_n=0 sck=1 mosi=0
+# t=63105 rst=1 en=0 dir=1 ss_n=0 sck=0 mosi=0
+# t=63605 rst=1 en=0 dir=1 ss_n=0 sck=1 mosi=0
+# t=64105 rst=1 en=0 dir=1 ss_n=0 sck=0 mosi=0
+# t=64605 rst=1 en=0 dir=1 ss_n=0 sck=1 mosi=0
+# t=65105 rst=1 en=0 dir=1 ss_n=0 sck=0 mosi=0
+# t=65605 rst=1 en=0 dir=1 ss_n=0 sck=1 mosi=0
+# t=66105 rst=1 en=0 dir=1 ss_n=0 sck=0 mosi=0
+# t=66605 rst=1 en=0 dir=1 ss_n=0 sck=1 mosi=0
+# t=67105 rst=1 en=0 dir=1 ss_n=0 sck=0 mosi=0
+# t=67605 rst=1 en=0 dir=1 ss_n=0 sck=1 mosi=0
+# t=68105 rst=1 en=0 dir=1 ss_n=0 sck=0 mosi=1
+# t=68605 rst=1 en=0 dir=1 ss_n=0 sck=1 mosi=1
+# t=69105 rst=1 en=0 dir=1 ss_n=0 sck=0 mosi=0
+# t=69115 rst=1 en=0 dir=1 ss_n=1 sck=0 mosi=0
+# [90600 ns] Simulare terminata
+# ** Note: $stop    : C:/Users/liviu/Desktop/Facultate_2025_2026/Licenta/stimuli.sv(80)
+#    Time: 90600 ps  Iteration: 0  Instance: /tb_top/u_stimuli
+# Break in Module stimuli at C:/Users/liviu/Desktop/Facultate_2025_2026/Licenta/stimuli.sv line 80
+restart -f
+run-all
+# invalid command name "run-all"
+run -all
+# GetModuleFileName: The specified module could not be found.
+# 
+# 
+# [0 ns] Reset activ
+# t=0 rst=0 en=0 dir=0 ss_n=1 sck=0 mosi=0
+# [100 ns] Reset eliberat, sistem pornit
+# t=100 rst=1 en=0 dir=0 ss_n=1 sck=0 mosi=0
+# [600 ns] Scenariu 1: enable 0->1, motor pornit directie inainte
+# t=600 rst=1 en=1 dir=0 ss_n=1 sck=0 mosi=0
+# t=775 rst=1 en=1 dir=0 ss_n=0 sck=0 mosi=0
+# t=1605 rst=1 en=1 dir=0 ss_n=0 sck=1 mosi=0
+# t=2105 rst=1 en=1 dir=0 ss_n=0 sck=0 mosi=0
+# t=2605 rst=1 en=1 dir=0 ss_n=0 sck=1 mosi=0
+# t=3105 rst=1 en=1 dir=0 ss_n=0 sck=0 mosi=0
+# t=3605 rst=1 en=1 dir=0 ss_n=0 sck=1 mosi=0
+# t=4105 rst=1 en=1 dir=0 ss_n=0 sck=0 mosi=0
+# t=4605 rst=1 en=1 dir=0 ss_n=0 sck=1 mosi=0
+# t=5105 rst=1 en=1 dir=0 ss_n=0 sck=0 mosi=0
+# t=5605 rst=1 en=1 dir=0 ss_n=0 sck=1 mosi=0
+# t=6105 rst=1 en=1 dir=0 ss_n=0 sck=0 mosi=0
+# t=6605 rst=1 en=1 dir=0 ss_n=0 sck=1 mosi=0
+# t=7105 rst=1 en=1 dir=0 ss_n=0 sck=0 mosi=1
+# t=7605 rst=1 en=1 dir=0 ss_n=0 sck=1 mosi=1
+# t=8105 rst=1 en=1 dir=0 ss_n=0 sck=0 mosi=0
+# t=8605 rst=1 en=1 dir=0 ss_n=0 sck=1 mosi=0
+# t=9105 rst=1 en=1 dir=0 ss_n=0 sck=0 mosi=0
+# t=9115 rst=1 en=1 dir=0 ss_n=1 sck=0 mosi=0
+# [30600 ns] Scenariu 2: inainte_inapoi 0->1, directie inapoi
+# t=30600 rst=1 en=1 dir=1 ss_n=1 sck=0 mosi=0
+# t=30775 rst=1 en=1 dir=1 ss_n=0 sck=0 mosi=0
+# t=31605 rst=1 en=1 dir=1 ss_n=0 sck=1 mosi=0
+# t=32105 rst=1 en=1 dir=1 ss_n=0 sck=0 mosi=0
+# t=32605 rst=1 en=1 dir=1 ss_n=0 sck=1 mosi=0
+# t=33105 rst=1 en=1 dir=1 ss_n=0 sck=0 mosi=0
+# t=33605 rst=1 en=1 dir=1 ss_n=0 sck=1 mosi=0
+# t=34105 rst=1 en=1 dir=1 ss_n=0 sck=0 mosi=0
+# t=34605 rst=1 en=1 dir=1 ss_n=0 sck=1 mosi=0
+# t=35105 rst=1 en=1 dir=1 ss_n=0 sck=0 mosi=0
+# t=35605 rst=1 en=1 dir=1 ss_n=0 sck=1 mosi=0
+# t=36105 rst=1 en=1 dir=1 ss_n=0 sck=0 mosi=0
+# t=36605 rst=1 en=1 dir=1 ss_n=0 sck=1 mosi=0
+# t=37105 rst=1 en=1 dir=1 ss_n=0 sck=0 mosi=1
+# t=37605 rst=1 en=1 dir=1 ss_n=0 sck=1 mosi=1
+# t=38105 rst=1 en=1 dir=1 ss_n=0 sck=0 mosi=1
+# t=38605 rst=1 en=1 dir=1 ss_n=0 sck=1 mosi=1
+# t=39105 rst=1 en=1 dir=1 ss_n=0 sck=0 mosi=0
+# t=39115 rst=1 en=1 dir=1 ss_n=1 sck=0 mosi=0
+# [60600 ns] Scenariu 3: enable 1->0, motor oprit
+# t=60600 rst=1 en=0 dir=1 ss_n=1 sck=0 mosi=0
+# t=60685 rst=1 en=0 dir=1 ss_n=0 sck=0 mosi=0
+# t=61605 rst=1 en=0 dir=1 ss_n=0 sck=1 mosi=0
+# t=62105 rst=1 en=0 dir=1 ss_n=0 sck=0 mosi=0
+# t=62605 rst=1 en=0 dir=1 ss_n=0 sck=1 mosi=0
+# t=63105 rst=1 en=0 dir=1 ss_n=0 sck=0 mosi=0
+# t=63605 rst=1 en=0 dir=1 ss_n=0 sck=1 mosi=0
+# t=64105 rst=1 en=0 dir=1 ss_n=0 sck=0 mosi=0
+# t=64605 rst=1 en=0 dir=1 ss_n=0 sck=1 mosi=0
+# t=65105 rst=1 en=0 dir=1 ss_n=0 sck=0 mosi=0
+# t=65605 rst=1 en=0 dir=1 ss_n=0 sck=1 mosi=0
+# t=66105 rst=1 en=0 dir=1 ss_n=0 sck=0 mosi=0
+# t=66605 rst=1 en=0 dir=1 ss_n=0 sck=1 mosi=0
+# t=67105 rst=1 en=0 dir=1 ss_n=0 sck=0 mosi=0
+# t=67605 rst=1 en=0 dir=1 ss_n=0 sck=1 mosi=0
+# t=68105 rst=1 en=0 dir=1 ss_n=0 sck=0 mosi=1
+# t=68605 rst=1 en=0 dir=1 ss_n=0 sck=1 mosi=1
+# t=69105 rst=1 en=0 dir=1 ss_n=0 sck=0 mosi=0
+# t=69115 rst=1 en=0 dir=1 ss_n=1 sck=0 mosi=0
+# [90600 ns] Simulare terminata
+# ** Note: $stop    : C:/Users/liviu/Desktop/Facultate_2025_2026/Licenta/stimuli.sv(80)
+#    Time: 90600 ps  Iteration: 0  Instance: /tb_top/u_stimuli
+# Break in Module stimuli at C:/Users/liviu/Desktop/Facultate_2025_2026/Licenta/stimuli.sv line 80
+wave zoom full
+# {0 ps} {95130 ps}

@@ -1,0 +1,136 @@
+m255
+K4
+z2
+!s11f vlog 2020.1 2020.02, Feb 28 2020
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+dC:/intelFPGA/20.1
+vreg_interface
+Z0 DXx6 sv_std 3 std 0 22 VYECXdT12H8WgbUP_5Y6:3
+Z1 !s110 1787582755
+!i10b 1
+!s100 OGEj;YiA`7[omin[OX5Tf2
+Z2 !s11b Dg1SIo80bB@j0V0VzS_@n1
+IgVZ_D`6@n?H5[_IV>?O@_1
+Z3 VDg1SIo80bB@j0V0VzS_@n1
+S1
+Z4 dC:/Users/liviu/Desktop/Facultate_2025_2026/Licenta
+w1787582748
+8C:/Users/liviu/Desktop/Facultate_2025_2026/Licenta/reg_interface.sv
+FC:/Users/liviu/Desktop/Facultate_2025_2026/Licenta/reg_interface.sv
+!i122 25
+L0 23 263
+Z5 OV;L;2020.1;71
+r1
+!s85 0
+31
+Z6 !s108 1787582755.000000
+!s107 C:/Users/liviu/Desktop/Facultate_2025_2026/Licenta/reg_interface.sv|
+!s90 -reportprogress|300|-work|work|-sv|-stats=none|C:/Users/liviu/Desktop/Facultate_2025_2026/Licenta/reg_interface.sv|
+!i113 1
+Z7 o-work work -sv
+Z8 tCvgOpt 0
+vspi_module
+R0
+R1
+!i10b 1
+!s100 f8Lh?Ic3^ES`YfKI4iS>J0
+R2
+Ih@I]EDdSF:d8m6=B2dib40
+R3
+S1
+R4
+w1783954489
+8C:/Users/liviu/Desktop/Facultate_2025_2026/Licenta/SPI_module.sv
+FC:/Users/liviu/Desktop/Facultate_2025_2026/Licenta/SPI_module.sv
+!i122 26
+L0 15 242
+R5
+r1
+!s85 0
+31
+R6
+!s107 C:/Users/liviu/Desktop/Facultate_2025_2026/Licenta/SPI_module.sv|
+!s90 -reportprogress|300|-work|work|-sv|-stats=none|C:/Users/liviu/Desktop/Facultate_2025_2026/Licenta/SPI_module.sv|
+!i113 1
+R7
+R8
+vstimuli
+R0
+R1
+!i10b 1
+!s100 ?f`2943@5dKEk>Dkb=2;o3
+R2
+IEYMK[z;jU11[EC9F:9?Q10
+R3
+S1
+R4
+w1787582383
+8C:/Users/liviu/Desktop/Facultate_2025_2026/Licenta/stimuli.sv
+FC:/Users/liviu/Desktop/Facultate_2025_2026/Licenta/stimuli.sv
+!i122 27
+L0 18 66
+R5
+r1
+!s85 0
+31
+R6
+!s107 C:/Users/liviu/Desktop/Facultate_2025_2026/Licenta/stimuli.sv|
+!s90 -reportprogress|300|-work|work|-sv|-stats=none|C:/Users/liviu/Desktop/Facultate_2025_2026/Licenta/stimuli.sv|
+!i113 1
+R7
+R8
+vtb_top
+R0
+R1
+!i10b 1
+!s100 3ji3^1RI6c_A2IA>YZY?H2
+R2
+I;9EL57h?>]FZ7MB<]oI7L0
+R3
+S1
+R4
+w1787581834
+8C:/Users/liviu/Desktop/Facultate_2025_2026/Licenta/tb_top.sv
+FC:/Users/liviu/Desktop/Facultate_2025_2026/Licenta/tb_top.sv
+!i122 28
+L0 12 62
+R5
+r1
+!s85 0
+31
+R6
+!s107 C:/Users/liviu/Desktop/Facultate_2025_2026/Licenta/tb_top.sv|
+!s90 -reportprogress|300|-work|work|-sv|-stats=none|C:/Users/liviu/Desktop/Facultate_2025_2026/Licenta/tb_top.sv|
+!i113 1
+R7
+R8
+vtop_level
+R0
+R1
+!i10b 1
+!s100 JUSU>@DEjW0m?3_MXc^[b0
+R2
+Ije1ef6FRci4L^dohH=F2<3
+R3
+S1
+R4
+w1787582387
+8C:/Users/liviu/Desktop/Facultate_2025_2026/Licenta/top_level.sv
+FC:/Users/liviu/Desktop/Facultate_2025_2026/Licenta/top_level.sv
+!i122 29
+L0 16 70
+R5
+r1
+!s85 0
+31
+R6
+!s107 C:/Users/liviu/Desktop/Facultate_2025_2026/Licenta/top_level.sv|
+!s90 -reportprogress|300|-work|work|-sv|-stats=none|C:/Users/liviu/Desktop/Facultate_2025_2026/Licenta/top_level.sv|
+!i113 1
+R7
+R8

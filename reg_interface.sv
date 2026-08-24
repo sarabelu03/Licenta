@@ -2,7 +2,8 @@
 // Description: APB Master care face legatura intre comutatoarele
 //              fizice de pe Nexys A7 si registrele din spi_module.
 //
-//              Detecteaza frontul crescator al celor doua comutatoare
+//              Detecteaza frontul crescator si coborator al comutatorului
+//              enable si frontul crescator al comutatorului inainte_inapoi
 //              prin filtre de debounce, apoi initiaza tranzactii APB
 //              catre spi_module pentru a configura si declansa
 //              transferuri SPI catre Arduino.
@@ -14,15 +15,16 @@
 //
 // Secventa Control FSM la schimbarea unui comutator:
 //   S_RESET_CFG: scrie SPCR o singura data la pornire
-//   S_IDLE:      asteapta frontul crescator al unui comutator
+//   S_IDLE:      asteapta frontul crescator sau coborator al unui comutator
 //   S_TX:        scrie SPDR cu comanda pentru motor
 //   S_POLL:      citeste SPSR in bucla pana cand SPIF = 1
 //   S_RX:        citeste SPDR pentru a obtine raspunsul Arduino
 
 module reg_interface #(
-    parameter REGISTER_WIDTH = 8,  // latimea in biti a registrelor APB
-    parameter ADDR_WIDTH     = 2,  // latimea adresei APB
-    parameter CNT_WIDTH      = 20  // latimea contorului debounce, 2^20 > 500000
+    parameter REGISTER_WIDTH = 8,      // latimea in biti a registrelor APB
+    parameter ADDR_WIDTH     = 2,      // latimea adresei APB
+    parameter CNT_WIDTH      = 20,     // latimea contorului debounce, 2^20 > 500000
+    parameter DEBOUNCE_MAX   = 500_000 // cicluri pentru filtrarea bounce-ului mecanic
 )(
     input clk,   // ceasul sistemului, 100 MHz
     input rst_n, // reset activ LOW
@@ -43,9 +45,6 @@ module reg_interface #(
     output reg [REGISTER_WIDTH-1:0] pwdata // date scrise in spi_module
 );
 
-// 500000 cicluri la 100 MHz = 5 ms, suficient pentru a filtra bouncingul mecanic
-localparam DEBOUNCE_MAX = 500_000;
-
 // Stari APB FSM
 localparam APB_IDLE   = 2'd0;
 localparam APB_SETUP  = 2'd1;
@@ -59,10 +58,11 @@ localparam S_POLL      = 3'd3;
 localparam S_RX        = 3'd4;
 
 // Semnale debounce pentru comutatorul enable
-reg [CNT_WIDTH-1:0] db_cnt_en;    // numara cicluri consecutive cat enable e ridicat
-reg                 db_stable_en; // 1 dupa ce enable a stat ridicat DEBOUNCE_MAX cicluri
-reg                 db_prev_en;   // valoarea anterioara a db_stable_en pentru detectie front
-reg                 pulse_enable; // puls de 1 ciclu pe frontul crescator al db_stable_en
+reg [CNT_WIDTH-1:0] db_cnt_en;     // numara cicluri consecutive cat enable e ridicat
+reg                 db_stable_en;  // 1 dupa ce enable a stat ridicat DEBOUNCE_MAX cicluri
+reg                 db_prev_en;    // valoarea anterioara a db_stable_en pentru detectie front
+reg                 pulse_enable;      // puls de 1 ciclu pe frontul crescator al db_stable_en
+reg                 pulse_enable_fall; // puls de 1 ciclu pe frontul coborator al db_stable_en
 
 // Semnale debounce pentru comutatorul inainte_inapoi
 reg [CNT_WIDTH-1:0] db_cnt_ii;
@@ -80,14 +80,12 @@ reg [2:0]                ctrl_state; // starea curenta a Control FSM
 reg [REGISTER_WIDTH-1:0] spsr_val;   // valoarea SPSR citita in timpul polling-ului
 
 // Semnale combinationale pentru a evita intarzieri de 1 ciclu la tranzitii
-// Se actualizeaza instant cand ctrl_state se schimba
-reg                      do_write;     // 1 = scriere, 0 = citire
-reg [ADDR_WIDTH-1:0]     apb_addr_int; // adresa registrului de accesat
+reg                      do_write;      // 1 = scriere, 0 = citire
+reg [ADDR_WIDTH-1:0]     apb_addr_int;  // adresa registrului de accesat
 reg [REGISTER_WIDTH-1:0] apb_wdata_int; // data de scris in registru
 
 // start_apb: semnal combinational, 1 cand Control FSM cere o tranzactie
 // si APB FSM este liber
-// Termenul !apb_done previne re-declansarea in ciclul imediat dupa terminare
 wire start_apb = (apb_state == APB_IDLE) && !apb_done &&
                  (ctrl_state == S_RESET_CFG ||
                   ctrl_state == S_TX        ||
@@ -106,6 +104,7 @@ always @(posedge clk or negedge rst_n)
 
 // DEBOUNCE enable - db_stable_en
 // Devine 1 cand enable a stat ridicat timp de DEBOUNCE_MAX cicluri
+// Devine 0 imediat cand enable coboara
 always @(posedge clk or negedge rst_n)
     if (!rst_n)
         db_stable_en <= 0;
@@ -122,10 +121,18 @@ always @(posedge clk or negedge rst_n)
 
 // DEBOUNCE enable - pulse_enable
 // Puls de 1 ciclu pe frontul crescator al db_stable_en
-// Folosit de Control FSM pentru a declansa un transfer SPI
+// Declanseaza transfer SPI cand enable trece din 0 in 1
 always @(posedge clk or negedge rst_n)
     if (!rst_n) pulse_enable <= 0;
     else        pulse_enable <= db_stable_en && !db_prev_en;
+
+// DEBOUNCE enable - pulse_enable_fall
+// Puls de 1 ciclu pe frontul coborator al db_stable_en
+// Declanseaza transfer SPI cand enable trece din 1 in 0
+// Astfel Arduino primeste comanda de oprire imediat
+always @(posedge clk or negedge rst_n)
+    if (!rst_n) pulse_enable_fall <= 0;
+    else        pulse_enable_fall <= !db_stable_en && db_prev_en;
 
 // DEBOUNCE inainte_inapoi - db_cnt_ii
 always @(posedge clk or negedge rst_n)
@@ -157,9 +164,6 @@ always @(posedge clk or negedge rst_n)
     else        pulse_ii <= db_stable_ii && !db_prev_ii;
 
 // APB FSM - apb_state
-// IDLE:   asteapta cerere de la Control FSM prin start_apb
-// SETUP:  pune adresa si data pe bus, penable = 0
-// ACCESS: asteapta confirmarea spi_module prin pready
 always @(posedge clk or negedge rst_n)
     if (!rst_n)
         apb_state <= APB_IDLE;
@@ -215,7 +219,6 @@ always @(posedge clk or negedge rst_n)
 
 // APB FSM - apb_done
 // Puls de 1 ciclu cand faza ACCESS se termina cu pready = 1
-// Semnalizeaza Control FSM ca poate trece la pasul urmator
 always @(posedge clk or negedge rst_n)
     if (!rst_n) apb_done <= 0;
     else        apb_done <= (apb_state == APB_ACCESS) && pready;
@@ -229,43 +232,41 @@ always @(posedge clk or negedge rst_n)
         apb_rdata <= prdata;
 
 // Control FSM - ctrl_state
-// Secventiaza tranzactiile APB pentru configurare si trimitere date
+// pulse_enable_fall declanseaza transfer si la coborarea enable
+// astfel Arduino primeste comanda de oprire imediat
 always @(posedge clk or negedge rst_n)
     if (!rst_n)
         ctrl_state <= S_RESET_CFG;
     else case (ctrl_state)
-        S_RESET_CFG: if (apb_done)                 ctrl_state <= S_IDLE;
-        S_IDLE:      if (pulse_enable || pulse_ii) ctrl_state <= S_TX;
-        S_TX:        if (apb_done)                 ctrl_state <= S_POLL;
-        S_POLL:      if (apb_done && apb_rdata[7]) ctrl_state <= S_RX;
-        S_RX:        if (apb_done)                 ctrl_state <= S_IDLE;
+        S_RESET_CFG: if (apb_done)                                       ctrl_state <= S_IDLE;
+        S_IDLE:      if (pulse_enable || pulse_enable_fall || pulse_ii)   ctrl_state <= S_TX;
+        S_TX:        if (apb_done)                                        ctrl_state <= S_POLL;
+        S_POLL:      if (apb_done && apb_rdata[7])                        ctrl_state <= S_RX;
+        S_RX:        if (apb_done)                                        ctrl_state <= S_IDLE;
         default:     ctrl_state <= S_IDLE;
     endcase
 
 // Control FSM - do_write
-// Combinational: determina daca urmatoarea tranzactie APB este scriere sau citire
 always @(*)
     case (ctrl_state)
-        S_RESET_CFG: do_write = 1; // scriem in SPCR
-        S_TX:        do_write = 1; // scriem in SPDR
-        default:     do_write = 0; // citim SPSR sau SPDR
+        S_RESET_CFG: do_write = 1;
+        S_TX:        do_write = 1;
+        default:     do_write = 0;
     endcase
 
 // Control FSM - apb_addr_int
-// Combinational: selecteaza registrul de accesat in functie de starea curenta
 always @(*)
     case (ctrl_state)
-        S_RESET_CFG: apb_addr_int = 2'd0; // adresa SPCR
-        S_TX:        apb_addr_int = 2'd2; // adresa SPDR
-        S_POLL:      apb_addr_int = 2'd1; // adresa SPSR
-        S_RX:        apb_addr_int = 2'd2; // adresa SPDR
+        S_RESET_CFG: apb_addr_int = 2'd0;
+        S_TX:        apb_addr_int = 2'd2;
+        S_POLL:      apb_addr_int = 2'd1;
+        S_RX:        apb_addr_int = 2'd2;
         default:     apb_addr_int = 2'd0;
     endcase
 
 // Control FSM - apb_wdata_int
-// Combinational: construieste data de scris in functie de starea curenta
-// SPCR: SPE=1, CPOL si CPHA de la comutatoare
-// SPDR: comanda pentru motor {6b0, enable, inainte_inapoi}
+// La enable=0 trimite {6b0, 0, inainte_inapoi} → motor oprit
+// La enable=1 trimite {6b0, 1, inainte_inapoi} → motor pornit
 always @(*)
     case (ctrl_state)
         S_RESET_CFG: apb_wdata_int = {1'b1, 4'b0, cpol, cpha, 1'b0};
